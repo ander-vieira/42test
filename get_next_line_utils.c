@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 10:43:40 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/16 21:05:36 by andeviei         ###   ########.fr       */
+/*   Created: 2023/09/13 10:08:16 by andeviei          #+#    #+#             */
+/*   Updated: 2023/09/18 17:46:55 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
-void	ft_putnbr_fd(int num, int fd)
+void	gnl_memcpy(char *dest, char *src, ssize_t size)
 {
-	if (num < 0)
+	ssize_t	i;
+
+	i = 0;
+	while (i < size)
 	{
-		ft_putchar_fd('-', fd);
-		if (num <= -10)
-			ft_putnbr_fd(-(num / 10), fd);
-		ft_putchar_fd('0' - (num % 10), fd);
+		dest[i] = src[i];
+		i++;
 	}
-	else
+}
+
+ssize_t	find_newline(char *buffer, ssize_t chunk_len)
+{
+	ssize_t	i;
+
+	i = 0;
+	while (i < chunk_len)
 	{
-		if (num >= 10)
-			ft_putnbr_fd(num / 10, fd);
-		ft_putchar_fd('0' + (num % 10), fd);
+		if (buffer[i] == '\n')
+			return (i + 1);
+		i++;
 	}
+	return (-1);
 }
