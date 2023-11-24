@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   ft_error.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 10:08:16 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/18 17:46:55 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/24 16:04:30 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/24 16:07:15 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#ifndef FT_ERROR_H
+# define FT_ERROR_H
 
-void	gnl_memcpy(char *dest, char *src, ssize_t size)
-{
-	ssize_t	i;
+# define ERR_PARSENUM_OK		0
+# define ERR_PARSENUM_BADBASE	1
+# define ERR_PARSENUM_BADCHAR	2
+# define ERR_PARSENUM_OVERFLOW	3
 
-	i = 0;
-	while (i < size)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-}
+typedef unsigned char	t_error;
 
-ssize_t	find_newline(char *buffer, ssize_t chunk_len)
-{
-	ssize_t	i;
-
-	i = 0;
-	while (i < chunk_len)
-	{
-		if (buffer[i] == '\n')
-			return (i + 1);
-		i++;
-	}
-	return (-1);
-}
+#endif

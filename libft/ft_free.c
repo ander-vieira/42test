@@ -1,39 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 10:08:16 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/18 17:46:55 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/24 12:50:02 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/24 14:25:07 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "libft.h"
 
-void	gnl_memcpy(char *dest, char *src, ssize_t size)
+void	ft_free(void *ptr)
 {
-	ssize_t	i;
-
-	i = 0;
-	while (i < size)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-}
-
-ssize_t	find_newline(char *buffer, ssize_t chunk_len)
-{
-	ssize_t	i;
-
-	i = 0;
-	while (i < chunk_len)
-	{
-		if (buffer[i] == '\n')
-			return (i + 1);
-		i++;
-	}
-	return (-1);
+	if (ptr != NULL)
+		free(ptr);
 }
