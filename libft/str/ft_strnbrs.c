@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_strnbrs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 12:50:02 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 14:25:07 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/26 19:08:29 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/26 19:14:04 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-void	ft_free(void *ptr)
+char	*ft_strnbrs(long num, char *base)
 {
-	if (ptr != NULL)
-		free(ptr);
+	char	*result;
+	char	*resultu;
+	char	*sign;
+
+	if (num < 0)
+	{
+		sign = ft_strbuild('-', 1);
+		resultu = ft_strnbru(ft_abs(num), base);
+		result = ft_strjoin(2, sign, resultu);
+		return (free(sign), free(resultu), result);
+	}
+	else
+		return (ft_strnbru(ft_abs(num), base));
 }

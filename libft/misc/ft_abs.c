@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.h                                         :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 16:04:30 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 16:07:15 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/25 16:32:03 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/26 13:46:34 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ERROR_H
-# define FT_ERROR_H
+#include "../libft.h"
 
-# define ERR_PARSENUM_OK		0
-# define ERR_PARSENUM_BADBASE	1
-# define ERR_PARSENUM_BADCHAR	2
-# define ERR_PARSENUM_OVERFLOW	3
-
-typedef unsigned char	t_error;
-
-#endif
+t_ulong	ft_abs(long num)
+{
+	if (num < 0)
+		return (-num);
+	else
+		return (num);
+}

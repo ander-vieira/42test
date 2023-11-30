@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strbuild.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 12:54:22 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 14:38:37 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/26 18:47:06 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/26 18:50:14 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-void	ft_memcpy(void *dst, void *src, size_t len)
+/*
+ *	Returns a string comprised of the same character repeated a number of times.
+ *
+ *	Arguments:
+ *	- c: the character to repeat
+ *	- len: the number of characters in the string
+ *
+ *	Return value:
+ *	- The repeated FREEABLE string
+ */
+char	*ft_strbuild(char c, size_t len)
 {
+	char	*result;
 	size_t	i;
 
-	if (dst == NULL || src == NULL || len == 0)
-		return ;
+	result = (char *)malloc(sizeof(char) * (len + 1));
+	if (result == NULL)
+		return (NULL);
 	i = 0;
 	while (i < len)
 	{
-		((char *)dst)[i] = ((char *)src)[i];
+		result[i] = c;
 		i++;
 	}
+	result[len] = '\0';
+	return (result);
 }

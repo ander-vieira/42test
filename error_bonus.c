@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   error_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:21:26 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 14:53:45 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/25 00:22:42 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 static void	av_putstr(char *str, int fd)
 {
@@ -22,6 +22,9 @@ void	av_printusage(char *pname)
 	av_putstr("Usage: \n", STDOUT_FILENO);
 	av_putstr(pname, STDOUT_FILENO);
 	av_putstr(" <infile> <cmd1> <...> <cmdN> <outfile>\n",
+		STDOUT_FILENO);
+	av_putstr(pname, STDOUT_FILENO);
+	av_putstr(" here_doc <end sequence> <cmd1> <...> <cmdN> <outfile>\n",
 		STDOUT_FILENO);
 }
 

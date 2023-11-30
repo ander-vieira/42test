@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc.c                                          :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 11:51:44 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 19:28:12 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/24 14:26:32 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/26 13:51:56 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../libft.h"
 
-t_fd	av_heredoc(t_pipex *px)
+ssize_t	ft_strchr(char *str, char c)
 {
-	(void)px;
+	ssize_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
 	return (-1);
 }

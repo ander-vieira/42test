@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_types.h                                         :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 12:48:44 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 19:12:44 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/24 12:54:22 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/26 13:46:39 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_TYPES_H
-# define FT_TYPES_H
+#include "../libft.h"
 
-# define FT_INT_MAX ((int)2147483647)
-# define FT_INT_MIN ((int)-2147483648)
+void	ft_memcpy(void *dst, void *src, size_t len)
+{
+	size_t	i;
 
-typedef enum e_bool {
-	FALSE = 0,
-	TRUE = 1
-}						t_bool;
-typedef unsigned int	t_uint;
-typedef int				t_fd;
-
-#endif
+	if (dst == NULL || src == NULL || len == 0)
+		return ;
+	i = 0;
+	while (i < len)
+	{
+		((char *)dst)[i] = ((char *)src)[i];
+		i++;
+	}
+}

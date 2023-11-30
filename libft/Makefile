@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 12:18:07 by andeviei          #+#    #+#              #
-#    Updated: 2023/11/24 17:25:45 by andeviei         ###   ########.fr        #
+#    Updated: 2023/11/26 19:27:51 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,16 @@ NAME = libft.a
 
 CFLAGS = -c -Wall -Wextra -Werror
 
-SRCS = ft_free.c ft_isspace.c ft_memcpy.c ft_parsenum.c ft_seterror.c ft_strchr.c ft_strcmp.c ft_strdup.c ft_strlen.c ft_strprefix.c
-HDRS = libft.h ft_error.h ft_types.h
-OBJS = $(SRCS:.c=.o)
+SRCS = \
+error/ft_seterror.c \
+misc/ft_abs.c misc/ft_free.c misc/ft_isspace.c misc/ft_memcpy.c misc/ft_parsenum.c \
+str/ft_strbuild.c str/ft_strchr.c str/ft_strcmp.c str/ft_strformat.c str/ft_strjoin.c str/ft_strlen.c str/ft_strnbrs.c \
+str/ft_strnbru.c str/ft_strprefix.c str/ft_strrchr.c str/ft_strsub.c \
+path/ft_basename.c path/ft_dirname.c path/ft_trimname.c \
+gnl/ft_gnl.c \
+print/ft_print_addwrite.c print/ft_printchar.c print/ft_printf.c print/ft_printnbrs.c print/ft_printnbru.c print/ft_printstr.c
+HDRS = libft.h
+OBJS = $(patsubst %.c,%.o,$(notdir $(SRCS)))
 
 all: $(NAME)
 
