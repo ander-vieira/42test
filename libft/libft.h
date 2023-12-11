@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 19:14:40 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:15:23 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@
 
 # define FT_INT_MAX 2147483647
 
+# define BASE_BIN	"01"
+# define BASE_OCT	"01234567"
 # define BASE_DEC	"0123456789"
 # define BASE_HXL	"0123456789abcdef"
 # define BASE_HXU	"0123456789ABCDEF"
 
-typedef enum e_bool {
+typedef enum e_bool
+{
 	FALSE = 0,
 	TRUE = 1
 }						t_bool;
@@ -59,7 +62,6 @@ void	ft_seterror(t_error *error, t_error value);
 /* misc: Miscellaneous functions                                              */
 
 t_ulong	ft_abs(long num);
-void	ft_free(void *ptr);
 t_bool	ft_isspace(char c);
 void	ft_memcpy(void *dst, void *src, size_t len);
 int		ft_parsenum(char *str, char *base, t_error *error);
@@ -78,6 +80,7 @@ char	*ft_strnbru(t_ulong num, char *base);
 t_bool	ft_strprefix(char *str, char *prefix);
 ssize_t	ft_strrchr(char *str, char c);
 char	*ft_strsub(char *str, size_t len);
+t_bool	ft_strsuffix(char *str, char *suffix);
 
 /* ************************************************************************** */
 /* path: Functions for handling pathnames                                     */

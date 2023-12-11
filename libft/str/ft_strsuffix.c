@@ -1,19 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_strsuffix.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 12:50:02 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 13:46:36 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/30 15:58:42 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/30 16:00:05 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void	ft_free(void *ptr)
+t_bool	ft_strsuffix(char *str, char *suffix)
 {
-	if (ptr != NULL)
-		free(ptr);
+	size_t	str_len;
+	size_t	suf_len;
+	size_t	i;
+
+	if (str == NULL || suffix == NULL)
+		return (FALSE);
+	str_len = ft_strlen(str);
+	suf_len = ft_strlen(suffix);
+	if (str_len < suf_len)
+		return (FALSE);
+	i = 0;
+	while (i < suf_len)
+	{
+		if (str[str_len - suf_len + i] != suffix[i])
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
 }
