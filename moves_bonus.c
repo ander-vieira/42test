@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.c                                      :+:      :+:    :+:   */
+/*   moves_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 17:01:40 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 00:23:06 by andeviei         ###   ########.fr       */
+/*   Created: 2024/02/05 15:15:50 by andeviei          #+#    #+#             */
+/*   Updated: 2024/02/05 15:52:54 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex_bonus.h"
+#include "so_long.h"
 
-static t_bool	av_runcmds(t_pipex *px)
+static t_uint	*g_moves(void)
 {
-	t_bool	ok;
-	size_t	i;
+	static t_uint	moves;
 
-	i = 0;
-	while (i < px->cmd_num)
-	{
-		ok = av_runcmd(px, i);
-		i++;
-	}
-	return (ok);
+	return (&moves);
 }
 
-int	main(int argc, char **argv, char **envp)
+void	increment_moves(void)
 {
-	t_pipex	px;
+	*g_moves() += 1;
+}
 
-	if (!av_initpipex(&px, argc, argv, envp))
-		return (EXIT_FAILURE);
-	if (!av_runcmds(&px))
-		return (av_freepipex(&px), EXIT_FAILURE);
-	return (av_freepipex(&px), EXIT_SUCCESS);
+t_uint	get_moves(void)
+{
+	return (*g_moves());
+}
+
+void	draw_moves(void)
+{
+	char	*str;
+
+	str = ft_strformat("%u", *g_moves());
+	if (str == NULL)
+		return ;
+	mlx_string_put(g_sl()->mlx, g_sl()->win, 4, 20, 0x00FF0000, str);
+	free(str);
 }

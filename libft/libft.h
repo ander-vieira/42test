@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/05 20:15:23 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/03 16:59:23 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,12 @@ typedef enum e_bool
 	FALSE = 0,
 	TRUE = 1
 }						t_bool;
+typedef unsigned char	t_byte;
 typedef unsigned int	t_uint;
 typedef unsigned long	t_ulong;
 typedef int				t_fd;
+
+typedef t_bool			(*t_splitfun)(char, void *);
 
 /* ************************************************************************** */
 /* Error handling functions and macros                                        */
@@ -52,7 +55,7 @@ typedef int				t_fd;
 # define ERR_PARSENUM_BADCHAR	102
 # define ERR_PARSENUM_OVERFLOW	103
 
-# define ERR_GNL_BADFD	101
+# define ERR_READ_BADFD	101
 
 typedef unsigned char	t_error;
 
@@ -81,6 +84,9 @@ t_bool	ft_strprefix(char *str, char *prefix);
 ssize_t	ft_strrchr(char *str, char c);
 char	*ft_strsub(char *str, size_t len);
 t_bool	ft_strsuffix(char *str, char *suffix);
+char	**ft_strsplit(char *str, char c);
+char	**ft_strsplit_magic(char *str, t_splitfun fun, void *ctx);
+void	ft_strsplit_free(char **split);
 
 /* ************************************************************************** */
 /* path: Functions for handling pathnames                                     */
@@ -94,12 +100,13 @@ char	*ft_dirname(char *name);
 char	*ft_trimname(char *name);
 
 /* ************************************************************************** */
-/* gnl: Get next line                                                         */
+/* read: Read from file descriptors                                           */
 
-# define GNL_FDLIMIT	4096
-# define GNL_BUFSIZE	64
+# define READ_FDLIMIT	4096
+# define READ_BUFSIZE	64
 
-char	*ft_gnl(t_fd fd, t_error *error);
+char	*ft_readline(t_fd fd, t_error *error);
+char	*ft_readfull(t_fd fd, t_error *error);
 
 /* ************************************************************************** */
 /* print: Print functions                                                     */

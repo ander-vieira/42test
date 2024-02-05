@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   end_game_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 17:01:40 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 00:58:45 by andeviei         ###   ########.fr       */
+/*   Created: 2024/01/29 18:29:50 by andeviei          #+#    #+#             */
+/*   Updated: 2024/02/01 17:30:42 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "so_long_bonus.h"
 
-static t_bool	av_runcmds(t_pipex *px)
+void	end_game(t_uint	status)
 {
-	t_bool	ok;
-	size_t	i;
-
-	i = 0;
-	while (i < px->cmd_num)
-	{
-		ok = av_runcmd(px, i);
-		i++;
-	}
-	return (ok);
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	t_pipex	px;
-
-	if (!av_initpipex(&px, argc, argv, envp))
-		return (EXIT_FAILURE);
-	if (!av_runcmds(&px))
-		return (av_freepipex(&px), EXIT_FAILURE);
-	return (av_freepipex(&px), EXIT_SUCCESS);
+	if (status == END_WIN)
+		ft_printf(STDOUT_FILENO, "YOU WIN... FOR NOW\n");
+	else if (status == END_CLOSE)
+		ft_printf(STDOUT_FILENO, "WHY QUIT? ARE YOU SCARED?\n");
+	else if (status == END_LOSE)
+		ft_printf(STDOUT_FILENO, "GAME OVER, YOU LOSER!\n");
+	map_free(g_sl()->map);
+	exit(0);
 }

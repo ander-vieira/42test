@@ -5,27 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 17:21:26 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/11 14:36:48 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/09 15:36:56 by andeviei          #+#    #+#             */
+/*   Updated: 2024/01/25 16:26:38 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "so_long.h"
 
-void	av_printusage(char *pname)
+void	print_error(char *msg)
 {
-	ft_printstr(STDOUT_FILENO, "Usage: \n");
-	ft_printstr(STDOUT_FILENO, pname);
-	ft_printstr(STDOUT_FILENO, " <infile> <cmd1> <cmd2> <outfile>\n");
-}
-
-void	av_printerror(char *pname, char *func, char *msg)
-{
-	if (pname != NULL)
-		ft_printf(STDERR_FILENO, "%s: ", pname);
-	if (func != NULL)
-		ft_printf(STDERR_FILENO, "%s: ", func);
 	if (msg == NULL)
 		msg = strerror(errno);
-	ft_printf(STDERR_FILENO, "%s\n", msg);
+	ft_printf(STDERR_FILENO, "Error\n%s: %s\n", g_sl()->pname, msg);
 }

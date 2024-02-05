@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_bonus.c                                      :+:      :+:    :+:   */
+/*   ft_strsplit_free.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 15:36:56 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/30 17:39:01 by andeviei         ###   ########.fr       */
+/*   Created: 2024/01/10 17:36:44 by andeviei          #+#    #+#             */
+/*   Updated: 2024/01/10 18:36:08 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../libft.h"
 
-void	print_error(char *msg)
+void	ft_strsplit_free(char **split)
 {
-	if (msg == NULL)
-		msg = strerror(errno);
-	ft_printf(STDERR_FILENO, "Error\n%s: %s\n", g_sl()->pname, msg);
+	size_t	i;
+
+	i = 0;
+	while (split[i] != NULL)
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }

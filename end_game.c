@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_bonus.c                                      :+:      :+:    :+:   */
+/*   end_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 15:36:56 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/30 17:39:01 by andeviei         ###   ########.fr       */
+/*   Created: 2024/01/29 18:29:50 by andeviei          #+#    #+#             */
+/*   Updated: 2024/01/29 18:41:21 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
-void	print_error(char *msg)
+void	end_game(t_uint	status)
 {
-	if (msg == NULL)
-		msg = strerror(errno);
-	ft_printf(STDERR_FILENO, "Error\n%s: %s\n", g_sl()->pname, msg);
+	if (status == END_WIN)
+		ft_printf(STDOUT_FILENO, "YOU WIN... FOR NOW\n");
+	else if (status == END_CLOSE)
+		ft_printf(STDOUT_FILENO, "WHY QUIT? ARE YOU SCARED?\n");
+	map_free(g_sl()->map);
+	exit(0);
 }

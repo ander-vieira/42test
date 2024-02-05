@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_bonus.c                                      :+:      :+:    :+:   */
+/*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 15:36:56 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/30 17:39:01 by andeviei         ###   ########.fr       */
+/*   Created: 2024/01/10 17:19:57 by andeviei          #+#    #+#             */
+/*   Updated: 2024/01/10 17:37:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "../libft.h"
 
-void	print_error(char *msg)
+static t_bool	ft_strsplit_ischar(char c, void *ctx)
 {
-	if (msg == NULL)
-		msg = strerror(errno);
-	ft_printf(STDERR_FILENO, "Error\n%s: %s\n", g_sl()->pname, msg);
+	return (c == *((char *)ctx));
+}
+
+char	**ft_strsplit(char *str, char c)
+{
+	return (ft_strsplit_magic(str, &ft_strsplit_ischar, &c));
 }
