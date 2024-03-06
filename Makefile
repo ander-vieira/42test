@@ -6,52 +6,43 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/04 18:27:14 by andeviei          #+#    #+#              #
-#    Updated: 2024/02/05 16:34:12 by andeviei         ###   ########.fr        #
+#    Updated: 2024/03/01 22:26:36 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = so_long
+NAME = push_swap
+NAME_BONUS = checker
 
 CFLAGS = -Wall -Wextra -Werror
-MLXFLAGS = -framework OpenGL -framework AppKit
 
-SRCS = so_long.c end_game.c error.c initmlx.c load_images.c map.c map2.c map3.c read_map.c validate_map.c
-HDRS = so_long.h
+SRCS = push_swap.c algo.c algo_any.c algo_five.c algo_three.c algo_two.c cmp.c op.c oper.c pick_algo.c read_args.c stack.c stack2.c stack3.c stack4.c target.c wrap.c
+HDRS = push_swap.h
 
-SRCS_BONUS = so_long_bonus.c do_turn_bonus.c end_game_bonus.c error_bonus.c get_frame_bonus.c initmlx_bonus.c load_images_bonus.c \
-map_bonus.c map2_bonus.c map3_bonus.c moves_bonus.c read_map_bonus.c validate_map_bonus.c
-HDRS_BONUS = so_long_bonus.h
+SRCS_BONUS = checker_bonus.c op_bonus.c read_args_bonus.c stack_bonus.c stack2_bonus.c stack3_bonus.c wrap_bonus.c
+HDRS_BONUS = checker_bonus.h
 
 LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a
 
-MLX_DIR = mlx/
-MLX = $(MLX_DIR)libmlx.a
-
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MLX) $(SRCS) $(HDRS)
-	gcc $(CFLAGS) $(MLXFLAGS) $(SRCS) $(LIBFT) $(MLX) -o $(NAME)
+$(NAME): $(LIBFT) $(SRCS) $(HDRS)
+	gcc $(CFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
 
-bonus: $(LIBFT) $(MLX) $(SRCS_BONUS) $(HDRS_BONUS)
-	gcc $(CFLAGS) $(MLXFLAGS) $(SRCS_BONUS) $(LIBFT) $(MLX) -o $(NAME)
+bonus: $(NAME_BONUS)
+
+$(NAME_BONUS): $(LIBFT) $(SRCS_BONUS) $(HDRS_BONUS)
+	gcc $(CFLAGS) $(SRCS_BONUS) $(LIBFT) -o $(NAME_BONUS)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR) all clean
 
-$(MLX):
-	make -C $(MLX_DIR) all
-
 clean:
 	make -C $(LIBFT_DIR) fclean
-	make -C $(MLX_DIR) clean
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(NAME_BONUS)
 
 re: fclean all
 
-norm:
-	norminette $(LIBFT_DIR) $(SRCS) $(SRCS_BONUS) $(HDRS) $(HDRS_BONUS)
-
-.PHONY: all clean fclean re bonus
+.PHONY: all bonus clean fclean re

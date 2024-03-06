@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/06 15:45:17 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 01:37:43 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef t_bool			(*t_splitfun)(char, void *);
 # define FTERR_PARSENUM_BADBASE		101
 # define FTERR_PARSENUM_BADCHAR		102
 # define FTERR_PARSENUM_OVERFLOW	103
+# define FTERR_PARSENUM_EMPTY		104
 
 t_byte	ft_geterror(void);
 
@@ -63,7 +64,9 @@ t_byte	ft_geterror(void);
 t_ulong	ft_abs(long num);
 t_bool	ft_isspace(char c);
 void	ft_memcpy(void *dst, void *src, size_t len);
-int		ft_parsenum(char *str, char *base);
+int		ft_parseint(char *str, char *base);
+t_uint	ft_parseuint(char *str, char *base);
+t_bool	ft_xor(t_bool b1, t_bool b2);
 
 /* ************************************************************************** */
 /* str: Functions for handling strings                                        */
@@ -81,6 +84,7 @@ ssize_t	ft_strrchr(char *str, char c);
 char	*ft_strsub(char *str, size_t len);
 t_bool	ft_strsuffix(char *str, char *suffix);
 char	**ft_strsplit(char *str, char c);
+char	**ft_strsplit_space(char *str);
 char	**ft_strsplit_magic(char *str, t_splitfun fun, void *ctx);
 void	ft_strsplit_free(char **split);
 
@@ -110,12 +114,6 @@ char	*ft_readfull(t_fd fd);
 # define PRINT_NULL		"(null)"
 # define PRINT_PTR_PREF	"0x"
 
-void	ft_print_addwrite(int *result, ssize_t bytes_write);
-
-int		ft_printchar(t_fd fd, char c);
 int		ft_printf(t_fd fd, char *format, ...);
-int		ft_printnbrs(t_fd fd, long num, char *base);
-int		ft_printnbru(t_fd fd, t_ulong num, char *base);
-int		ft_printstr(t_fd fd, char *str);
 
 #endif
